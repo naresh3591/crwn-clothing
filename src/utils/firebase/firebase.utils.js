@@ -21,12 +21,12 @@ import {
 } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyDDU4V-_QV3M8GyhC9SVieRTDM4dbiT0Yk',
-  authDomain: 'crwn-clothing-db-98d4d.firebaseapp.com',
-  projectId: 'crwn-clothing-db-98d4d',
-  storageBucket: 'crwn-clothing-db-98d4d.appspot.com',
-  messagingSenderId: '626766232035',
-  appId: '1:626766232035:web:506621582dab103a4d08d6',
+  apiKey: "AIzaSyD8i-JyrVOkpxTT_Tdc_BQ06lyg31mH4g4",
+  authDomain: "crwn-clothing-db-833f7.firebaseapp.com",
+  projectId: "crwn-clothing-db-833f7",
+  storageBucket: "crwn-clothing-db-833f7.appspot.com",
+  messagingSenderId: "933422917051",
+  appId: "1:933422917051:web:2d0724b479f1ed6b6c109e"
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
@@ -67,13 +67,7 @@ export const getCategoriesAndDocuments = async () => {
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const { title, items } = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map((docSnapshot) => docSnapshot.data());
 };
 
 export const createUserDocumentFromAuth = async (
